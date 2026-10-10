@@ -1,0 +1,25 @@
+{
+  "classes": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "image_size": [
+    96,
+    96
+  ],
+  "feature_extractor": "HOG",
+  "orientations": 9,
+  "pixels_per_cell": [
+    8,
+    8
+  ],
+  "cells_per_block": [
+    2,
+    2
+  ],
+  "block_norm": "L2-Hys",
+  "dataset": "Masoud Nickparvar Brain Tumor MRI Dataset",
+  "test_accuracy": 0.824375
+}

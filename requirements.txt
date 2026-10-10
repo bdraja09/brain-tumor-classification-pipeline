@@ -1,0 +1,28 @@
+# ============================================================
+# Brain Tumor Classification Pipeline - Dépendances requises
+# ============================================================
+
+# --- Deep Learning & Modèles ---
+tensorflow>=2.12.0
+keras>=2.12.0
+h5py>=3.8.0
+
+# --- Traitement d'Images & Vision par Ordinateur ---
+opencv-python>=4.7.0
+Pillow>=9.4.0
+
+# --- Calcul Scientifique & Machine Learning ---
+numpy>=1.23.0
+scipy>=1.10.0
+scikit-learn>=1.2.0
+pandas>=2.0.0
+
+# --- Visualisation & Graphiques ---
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# --- Interface Graphique (GUI) ---
+customtkinter>=5.2.0
+
+# --- Utilitaires ---
+tqdm>=4.65.0
