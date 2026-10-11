@@ -2,7 +2,6 @@
 
 Pipeline de diagnostic assisté de tumeurs cérébrales par imagerie IRM, combinant Deep Learning (CNN, U-Net) et Machine Learning classique (Random Forest sur descripteurs HOG).
 
-> ⚠️ **Projet académique / démonstration.** Cet outil est une aide à la décision et **ne remplace pas un avis médical**.
 
 ## 🔬 Fonctionnement
 
