@@ -1,0 +1,185 @@
+# 6 nœuds fog (2 réplicas par tâche), répartis sur 2 machines grâce aux profils.
+#
+#   Machine A : detection-1, segmentation-2, classification-2   (profil machine-a)
+#   Machine B : detection-2, segmentation-1, classification-1   (profil machine-b)
+#
+# Le profil de la machine se règle dans le fichier .env :
+#   COMPOSE_PROFILES=machine-a        (ou machine-b sur l'autre machine)
+# puis :
+#   docker compose up -d --build
+#
+# Sous-réseau Docker local à chaque machine : fog-net = 172.28.0.0/24
+#
+#   detection-1       172.28.0.11   :8001        detection-2       172.28.0.12   :8001
+#   segmentation-1    172.28.0.21   :8002        segmentation-2    172.28.0.22   :8002
+#   classification-1  172.28.0.31   :8003        classification-2  172.28.0.32   :8003
+#
+# Les deux machines utilisent le même sous-réseau sans conflit : chacun reste local à son hôte.
+# Entre machines, la communication passe par le réseau local : IP de l'hôte + port publié
+# (voir docker-compose.dev.yml, qui publie des ports uniques pour chacun des 6 nœuds).
+# Chaque nœud construit sa propre image (une étiquette par nœud) : une machine n'a donc
+# jamais besoin de l'image d'un nœud qui tourne sur l'autre.
+
+name: brain-tumor-fog
+
+x-common: &common
+  restart: unless-stopped
+  volumes:
+    # Modèles hors Git, montés en lecture seule
+    - ${MODELS_DIR:-./models}:/models:ro
+
+# ---------- Détection (TensorFlow) ----------
+x-detection: &detection
+  <<: *common
+  cpus: "${DET_CPUS:-2.0}"
+  mem_limit: ${DET_MEM:-2g}
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+    interval: 10s
+    timeout: 3s
+    retries: 3
+    start_period: 60s          # TensorFlow met du temps à démarrer
+
+x-detection-env: &detection-env
+  MODEL_PATH: /models/${DET_MODEL_FILE:-tumor_detection_model.h5}
+  DET_THRESHOLD: "${DET_THRESHOLD:-0.4}"
+  TF_THREADS: "${TF_THREADS:-2}"
+  DELAY_MS: "${DELAY_MS:-0}"
+  MAX_CONCURRENCY: "${MAX_CONCURRENCY:-1}"
+
+# ---------- Segmentation (OpenCV) ----------
+x-segmentation: &segmentation
+  <<: *common
+  cpus: "${SEG_CPUS:-0.5}"
+  mem_limit: ${SEG_MEM:-512m}
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8002/health')"]
+    interval: 10s
+    timeout: 3s
+    retries: 3
+    start_period: 10s
+
+x-segmentation-env: &segmentation-env
+  SEG_THRESHOLD: "${SEG_THRESHOLD:-180}"
+  DELAY_MS: "${DELAY_MS:-0}"
+  MAX_CONCURRENCY: "${MAX_CONCURRENCY:-1}"
+
+# ---------- Classification (HOG + Random Forest) ----------
+x-classification: &classification
+  <<: *common
+  cpus: "${CLS_CPUS:-1.0}"
+  mem_limit: ${CLS_MEM:-1g}
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8003/health')"]
+    interval: 10s
+    timeout: 3s
+    retries: 3
+    start_period: 20s
+
+x-classification-env: &classification-env
+  MODEL_PATH: /models/${CLS_MODEL_FILE:-brain_tumor_rf/random_forest.joblib}
+  RF_N_JOBS: "1"
+  DELAY_MS: "${DELAY_MS:-0}"
+  MAX_CONCURRENCY: "${MAX_CONCURRENCY:-1}"
+
+services:
+  # ======================= MACHINE A =======================
+  detection-1:
+    <<: *detection
+    profiles: ["machine-a"]
+    image: fog-detection-1:latest
+    build: ./fog/detection
+    container_name: detection-1
+    hostname: detection-1
+    environment:
+      <<: *detection-env
+      NODE_NAME: detection-1
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.11
+    labels: { fog.role: detection, fog.replica: "1", fog.machine: "a" }
+
+  segmentation-2:
+    <<: *segmentation
+    profiles: ["machine-a"]
+    image: fog-segmentation-2:latest
+    build: ./fog/segmentation
+    container_name: segmentation-2
+    hostname: segmentation-2
+    environment:
+      <<: *segmentation-env
+      NODE_NAME: segmentation-2
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.22
+    labels: { fog.role: segmentation, fog.replica: "2", fog.machine: "a" }
+
+  classification-2:
+    <<: *classification
+    profiles: ["machine-a"]
+    image: fog-classification-2:latest
+    build: ./fog/classification
+    container_name: classification-2
+    hostname: classification-2
+    environment:
+      <<: *classification-env
+      NODE_NAME: classification-2
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.32
+    labels: { fog.role: classification, fog.replica: "2", fog.machine: "a" }
+
+  # ======================= MACHINE B =======================
+  detection-2:
+    <<: *detection
+    profiles: ["machine-b"]
+    image: fog-detection-2:latest
+    build: ./fog/detection
+    container_name: detection-2
+    hostname: detection-2
+    environment:
+      <<: *detection-env
+      NODE_NAME: detection-2
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.12
+    labels: { fog.role: detection, fog.replica: "2", fog.machine: "b" }
+
+  segmentation-1:
+    <<: *segmentation
+    profiles: ["machine-b"]
+    image: fog-segmentation-1:latest
+    build: ./fog/segmentation
+    container_name: segmentation-1
+    hostname: segmentation-1
+    environment:
+      <<: *segmentation-env
+      NODE_NAME: segmentation-1
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.21
+    labels: { fog.role: segmentation, fog.replica: "1", fog.machine: "b" }
+
+  classification-1:
+    <<: *classification
+    profiles: ["machine-b"]
+    image: fog-classification-1:latest
+    build: ./fog/classification
+    container_name: classification-1
+    hostname: classification-1
+    environment:
+      <<: *classification-env
+      NODE_NAME: classification-1
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.31
+    labels: { fog.role: classification, fog.replica: "1", fog.machine: "b" }
+
+networks:
+  fog-net:
+    name: fog-net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+          gateway: 172.28.0.1

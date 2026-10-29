@@ -1,0 +1,24 @@
+# Publie les nœuds sur l'hôte : tests depuis la machine ET accès depuis l'autre machine
+# (IP de l'hôte + port). Chaque nœud a un port unique sur l'ensemble des deux machines.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+#
+# Seuls les nœuds du profil actif (COMPOSE_PROFILES) sont démarrés :
+#
+#   Machine A : detection-1 8001, segmentation-2 8012, classification-2 8013
+#   Machine B : detection-2 8011, segmentation-1 8002, classification-1 8003
+#
+
+services:
+  detection-1:
+    ports: ["8001:8001"]
+  detection-2:
+    ports: ["8011:8001"]
+  segmentation-1:
+    ports: ["8002:8002"]
+  segmentation-2:
+    ports: ["8012:8002"]
+  classification-1:
+    ports: ["8003:8003"]
+  classification-2:
+    ports: ["8013:8003"]
