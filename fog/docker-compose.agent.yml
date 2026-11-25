@@ -1,0 +1,62 @@
+# Agents de coordination (un par machine) : cas 1 (ACK) et cas 2 (reprise après panne).
+# Fichier SÉPARÉ : il n'a pas besoin de modifier le docker-compose.yml existant.
+#
+#   docker compose -f docker-compose.yml -f fog/docker-compose.dev.yml -f fog/docker-compose.agent.yml up -d --build
+#
+# Dans le .env de chaque machine, ajouter l'adresse de l'AUTRE machine :
+#   PEER_URL=http://<IP de l'autre machine>:8090
+#
+#   machine-a : agent-a  -> nœuds detection-1, segmentation-2, classification-2
+#   machine-b : agent-b  -> nœuds detection-2, segmentation-1, classification-1
+
+x-agent-env: &agent-env
+  PEER_URL: ${PEER_URL:-}
+  LOCAL_STEPS: ${LOCAL_STEPS:-detection,segmentation}   # le reste part chez l'autre machine
+  STOP_IF_NO_TUMOR: ${STOP_IF_NO_TUMOR:-1}
+  ACK_TIMEOUT_S: ${ACK_TIMEOUT_S:-5}
+  RETRY_DELAYS_S: ${RETRY_DELAYS_S:-1,2,4}
+
+services:
+  agent-a:
+    profiles: ["machine-a"]
+    build: ./fog/agent
+    image: fog-agent-a:latest
+    container_name: agent-a
+    hostname: agent-a
+    restart: unless-stopped
+    ports: ["8090:8090"]
+    environment:
+      <<: *agent-env
+      AGENT_NAME: agent-a
+      DET_URL: http://detection-1:8001
+      SEG_URL: http://segmentation-2:8002
+      CLS_URL: http://classification-2:8003
+    volumes:
+      - agent-a-data:/data
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.41
+
+  agent-b:
+    profiles: ["machine-b"]
+    build: ./fog/agent
+    image: fog-agent-b:latest
+    container_name: agent-b
+    hostname: agent-b
+    restart: unless-stopped
+    ports: ["8090:8090"]
+    environment:
+      <<: *agent-env
+      AGENT_NAME: agent-b
+      DET_URL: http://detection-2:8001
+      SEG_URL: http://segmentation-1:8002
+      CLS_URL: http://classification-1:8003
+    volumes:
+      - agent-b-data:/data
+    networks:
+      fog-net:
+        ipv4_address: 172.28.0.42
+
+volumes:
+  agent-a-data:
+  agent-b-data:

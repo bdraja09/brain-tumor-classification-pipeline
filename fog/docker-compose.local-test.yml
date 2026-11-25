@@ -1,0 +1,9 @@
+# Test local : les deux agents sur le meme PC, relies par le reseau Docker.
+services:
+  agent-a:
+    ports: !override ["8091:8090"]
+    environment:
+      PEER_URL: http://agent-b:8090
+  agent-b:
+    environment:
+      PEER_URL: http://agent-a:8090

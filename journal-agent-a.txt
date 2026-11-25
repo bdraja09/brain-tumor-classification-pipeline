@@ -1,0 +1,301 @@
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+[agent-a] 08:39:31.951 job=-          DEMARRAGE              local=['detection', 'segmentation'] pair=http://agent-b:8090
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8090 (Press CTRL+C to quit)
+[agent-a] 08:39:32.270 job=-          PAIR_INDISPONIBLE      http://agent-b:8090
+INFO:     172.28.0.42:46162 - "GET /health HTTP/1.1" 200 OK
+[agent-a] 08:39:32.872 job=-          RAPPORT_RECU           agent-b annonce son retour (demarrage_ou_retour_apres_panne, dernier job vu : None)
+INFO:     172.28.0.42:46172 - "POST /report HTTP/1.1" 200 OK
+[agent-a] 08:39:35.375 job=-          RAPPORT_ENVOYE         au pair ; jobs à récupérer : aucun
+INFO:     172.28.0.42:33812 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33820 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60542 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33828 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53788 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53796 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53806 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59646 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53822 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:43640 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:43650 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36630 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:43662 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44128 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44140 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44142 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44604 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41318 - "GET /health HTTP/1.1" 200 OK
+[agent-a] 08:40:18.281 job=d873e869   HANDOFF_RECU           de agent-b : 5114 octets, hash OK, image enregistrée -> ACK
+INFO:     172.28.0.42:41328 - "POST /handoff HTTP/1.1" 200 OK
+[agent-a] 08:40:18.321 job=d873e869   ETAPE_DEBUT            classification
+[agent-a] 08:40:18.479 job=d873e869   ETAPE_FIN              classification sur classification-2 en 143 ms
+[agent-a] 08:40:18.510 job=d873e869   TERMINE                résultat prêt, l'origine peut le récupérer
+INFO:     172.28.0.42:41332 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41340 - "GET /handoff/d873e869 HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41342 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42150 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38116 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38120 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38122 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57516 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38130 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44358 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44360 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44364 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33264 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33266 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33272 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48700 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50838 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50854 - "GET /health HTTP/1.1" 200 OK
+[agent-a] 08:40:59.700 job=02298446   HASH_INVALIDE          reçu a757cd3ddfe2… attendu 27a43972bf6b… : NACK
+INFO:     172.28.0.42:50868 - "POST /handoff HTTP/1.1" 422 Unprocessable Entity
+[agent-a] 08:41:00.853 job=02298446   HANDOFF_RECU           de agent-b : 5114 octets, hash OK, image enregistrée -> ACK
+INFO:     172.28.0.42:50880 - "POST /handoff HTTP/1.1" 200 OK
+[agent-a] 08:41:00.912 job=02298446   ETAPE_DEBUT            classification
+[agent-a] 08:41:01.000 job=02298446   ETAPE_FIN              classification sur classification-2 en 78 ms
+[agent-a] 08:41:01.018 job=02298446   TERMINE                résultat prêt, l'origine peut le récupérer
+INFO:     172.28.0.42:50896 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50908 - "GET /handoff/02298446 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53684 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36056 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36072 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36088 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36092 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54772 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44684 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44690 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44700 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51592 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41248 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41260 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41264 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42566 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42634 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42574 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42582 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42588 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39658 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:60538 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:60546 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1]
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+[agent-a] 08:44:15.347 job=-          DEMARRAGE              local=['detection', 'segmentation'] pair=http://agent-b:8090
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8090 (Press CTRL+C to quit)
+[agent-a] 08:44:15.515 job=-          PAIR_DISPONIBLE        http://agent-b:8090
+[agent-a] 08:44:15.532 job=-          RAPPORT_ENVOYE         au pair ; jobs à récupérer : ['962c8e57']
+[agent-a] 08:44:15.541 job=962c8e57   REDEMANDE_IMAGE        image jamais reçue : je la redemande à http://agent-b:8090
+[agent-a] 08:44:15.613 job=962c8e57   IMAGE_RECUE            5114 octets, hash OK
+[agent-a] 08:44:15.648 job=962c8e57   ACK_ENVOYE             accusé de réception envoyé à l'origine
+[agent-a] 08:44:15.697 job=962c8e57   ETAPE_DEBUT            classification
+[agent-a] 08:44:15.791 job=962c8e57   ETAPE_FIN              classification sur classification-2 en 82 ms
+[agent-a] 08:44:15.809 job=962c8e57   TERMINE                résultat prêt, l'origine peut le récupérer
+INFO:     172.28.0.42:42312 - "GET /handoff/962c8e57 HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42328 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53940 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42344 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42360 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35366 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46508 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35368 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35380 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:37954 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:37960 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37004 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:37964 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51050 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51060 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34766 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51074 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48720 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48726 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48734 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41454 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48750 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40578 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40082 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40600 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42838 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42854 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39142 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42866 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54974 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54976 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51836 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38828 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38842 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38858 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43902 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38864 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44494 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44498 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44506 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36920 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:52124 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:52138 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:52150 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60468 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48860 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48866 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48874 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52966 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:49520 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:49528 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:49532 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:49548 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49558 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44318 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44320 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44322 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46306 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40104 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40118 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40132 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35260 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52468 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35268 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35282 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:35290 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48960 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36696 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36706 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:36712 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55502 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33704 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33712 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33724 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41202 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37540 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41216 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41226 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59838 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54404 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54416 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54426 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41762 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:52722 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:52728 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:52744 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53712 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55556 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55558 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38022 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39262 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38036 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38046 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51454 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51458 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32846 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51464 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:51472 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44032 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43348 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44042 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44044 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:45882 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33782 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:45888 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:45894 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42296 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42300 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50562 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:42302 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44874 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44890 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50892 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44894 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:44896 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55524 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55528 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42368 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55532 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55638 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55648 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45970 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:55650 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33078 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33082 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41350 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33086 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33094 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:39766 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:39776 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34420 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:39778 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:56868 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:56884 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49298 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:56894 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:57146 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:57162 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34554 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:57170 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50556 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50560 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50574 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51396 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50576 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53478 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53480 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60330 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:53494 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:39204 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:39220 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:39230 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49026 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50758 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50766 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50778 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54710 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40364 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40372 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56280 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:40398 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38132 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38136 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:38138 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49376 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33244 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33252 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:33260 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43994 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48768 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48780 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:48796 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50318 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60448 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50326 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50342 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:50352 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48138 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:45834 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:45844 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:45860 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51838 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:57782 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:57798 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:57808 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:47154 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49986 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:47156 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:47160 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:47172 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58502 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41590 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41604 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:41610 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54676 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41192 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.28.0.42:54684 - "GET /health HTTP/1.1" 200 OK
